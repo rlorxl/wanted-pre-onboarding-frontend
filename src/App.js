@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Login from './pages/auth/Login';
+import Signup from './pages/auth/Signup';
+import TodoList from './pages/todo/TodoList';
+import NotFound from './pages/NotFound';
+import AuthContext from './store/auth-context';
 
 function App() {
+  const authCtx = useContext(AuthContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route
+        path='/'
+        element={authCtx.isLoggedIn ? <Navigate to='/todo' /> : <Login />}
+      />
+      <Route
+        path='/todo'
+        element={authCtx.isLoggedIn ? <TodoList /> : <Navigate to='/' />}
+      />
+      <Route
+        path='/login'
+        element={authCtx.isLoggedIn ? <Navigate to='/error' /> : <Login />}
+      />
+      <Route
+        path='/signup'
+        element={authCtx.isLoggedIn ? <Navigate to='/error' /> : <Signup />}
+      />
+      <Route path='/error' element={<NotFound />} />
+    </Routes>
   );
 }
 
