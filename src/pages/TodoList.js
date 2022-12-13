@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import TodoItem from '../../components/TodoItem';
-import Card from '../../components/ui/Card';
+import TodoItem from '../components/TodoItem';
+import Card from '../components/ui/Card';
 import styled from 'styled-components';
-import useFetch from '../../hooks/useFetch';
+import useFetch from '../hooks/useFetch';
 
 const TodoList = () => {
   const [todosData, setTodosData] = useState([]);

@@ -1,8 +1,7 @@
 import { useContext } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import Login from './pages/auth/Login';
-import Signup from './pages/auth/Signup';
-import TodoList from './pages/todo/TodoList';
+import Auth from './pages/Auth';
+import TodoList from './pages/TodoList';
 import NotFound from './pages/NotFound';
 import AuthContext from './store/auth-context';
 
@@ -13,7 +12,7 @@ function App() {
     <Routes>
       <Route
         path='/'
-        element={authCtx.isLoggedIn ? <Navigate to='/todo' /> : <Login />}
+        element={authCtx.isLoggedIn ? <Navigate to='/todo' /> : <Auth />}
       />
       <Route
         path='/todo'
@@ -21,11 +20,11 @@ function App() {
       />
       <Route
         path='/login'
-        element={authCtx.isLoggedIn ? <Navigate to='/error' /> : <Login />}
+        element={authCtx.isLoggedIn ? <Navigate to='/error' /> : <Auth />}
       />
       <Route
         path='/signup'
-        element={authCtx.isLoggedIn ? <Navigate to='/error' /> : <Signup />}
+        element={authCtx.isLoggedIn ? <Navigate to='/error' /> : <Auth />}
       />
       <Route path='/error' element={<NotFound />} />
     </Routes>
