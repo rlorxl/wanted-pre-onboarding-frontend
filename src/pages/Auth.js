@@ -47,6 +47,8 @@ const Auth = () => {
   }, [location, reset]);
 
   const emailValidateHandler = () => {
+    // setEmailIsValid(false);
+
     const emailRegex =
       /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
@@ -55,6 +57,7 @@ const Auth = () => {
       emailInputRef.current.value.length > 0
     ) {
       setErrorMessage('이메일 형식에 맞게 입력해주세요.');
+      setEmailIsValid(false);
     } else {
       setErrorMessage('');
       setEmailIsValid(true);
@@ -67,6 +70,7 @@ const Auth = () => {
       passwordInputRef.current.value.length < 8
     ) {
       setErrorMessage('패스워드를 8자리 이상 입력해주세요.');
+      setPasswordIsValid(false);
     } else {
       setErrorMessage('');
       setPasswordIsValid(true);
