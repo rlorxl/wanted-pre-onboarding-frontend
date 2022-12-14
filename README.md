@@ -74,7 +74,7 @@ const loginHandler = (token) => {
 ```js
 const useFetch = () => {
   const httpRequest = useCallback(async (requestConfig, id) => {
-    const { method, headers, boody } = requestConfig;
+    const { method, headers, body } = requestConfig;
 
     const url = !id
       ? 'https://pre-onboarding-selection-task.shop/todos'
