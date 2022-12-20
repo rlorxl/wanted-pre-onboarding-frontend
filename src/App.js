@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Auth from './pages/Auth';
+import NotFoundPage from './pages/NotFound';
 import TodoList from './pages/TodoList';
-import NotFound from './pages/NotFound';
 import AuthContext from './store/auth-context';
 
 function App() {
@@ -11,22 +11,18 @@ function App() {
   return (
     <Routes>
       <Route
-        path='/'
-        element={authCtx.isLoggedIn ? <Navigate to='/todo' /> : <Auth />}
-      />
-      <Route
         path='/todo'
-        element={authCtx.isLoggedIn ? <TodoList /> : <Navigate to='/' />}
+        element={!authCtx.isLoggedIn ? <Navigate to='/' /> : <TodoList />}
       />
       <Route
-        path='/login'
-        element={authCtx.isLoggedIn ? <Navigate to='/error' /> : <Auth />}
+        path='/'
+        element={!authCtx.isLoggedIn ? <Auth /> : <Navigate to='/todo' />}
       />
       <Route
         path='/signup'
-        element={authCtx.isLoggedIn ? <Navigate to='/error' /> : <Auth />}
+        element={!authCtx.isLoggedIn ? <Auth /> : <Navigate to='/error' />}
       />
-      <Route path='/error' element={<NotFound />} />
+      <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );
 }

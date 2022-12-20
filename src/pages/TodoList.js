@@ -54,7 +54,12 @@ const TodoList = () => {
       <ul>
         {todosData.length > 0 &&
           todosData.map((data) => (
-            <TodoItem key={data.id} todos={data} onRender={setUpdateTodos} />
+            <TodoItem
+              key={data.id}
+              todos={data}
+              onRender={setUpdateTodos}
+              fetchTodosData={setTodosData}
+            />
           ))}
       </ul>
     </Card>
